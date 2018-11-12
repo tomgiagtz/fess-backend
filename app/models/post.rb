@@ -1,5 +1,12 @@
 class Post < ApplicationRecord
 	has_many :likes
+
+	def like_count
+		likes = self.likes
+		return likes.inject(0) do |count, like|
+			like.upvote ? count+1 : count-1
+		end
+	end
 	
 	def calculate_distance_from(current_position)
 		x1 = current_position[0]
