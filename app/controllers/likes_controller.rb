@@ -1,7 +1,15 @@
 class LikesController < ApplicationController
     def create
-        like = Like.create(like_params)
-        render json: like.post
+        like = Like.new(like_params)
+        if (like.post.likes.find_by(user_id: like.user_id))
+            status = 304
+            puts 'not liked'
+        else 
+            status = 200
+            like.save
+        end
+
+        render status: status, json: like.post
     end
 
     def update

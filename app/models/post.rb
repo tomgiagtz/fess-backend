@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
 	has_many :likes
+	validates :location, presence: true
 
 	def like_count
 		likes = self.likes
@@ -17,6 +18,7 @@ class Post < ApplicationRecord
 	end
 
 	def self.get_posts_by_location(location)
+		puts location
 		Post.all.select do |post|
 			post.calculate_distance_from(location) < 0.5
 		end

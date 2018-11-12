@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 def index
+    puts request.headers["location"]
+
     if request.headers["location"] == "true"
         lat = request.headers["latitude"].to_f
         long = request.headers["longitude"].to_f
