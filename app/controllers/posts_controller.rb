@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   end
 
   def create
-  	puts "params" + post_params.to_s
   	post = Post.new
   	post.content = post_params[:content]
   	post.location = ActiveRecord::Point.new(post_params[:location][:x], post_params[:location][:y])
