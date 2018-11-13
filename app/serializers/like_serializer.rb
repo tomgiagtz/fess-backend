@@ -1,3 +1,3 @@
 class LikeSerializer < ActiveModel::Serializer
-  attributes :user_id, :upvote
+  attributes :post_id, :upvote
 end
