@@ -2,6 +2,7 @@ class Post < ApplicationRecord
 	has_many :likes
 	has_many :comments
 	validates :location, presence: true
+	validates :content, presence: true
 
 	def like_count
 		likes = self.likes

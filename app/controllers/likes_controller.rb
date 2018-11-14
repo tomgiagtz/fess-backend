@@ -4,7 +4,7 @@ class LikesController < ApplicationController
         if (like.post.likes.find_by(user_id: like.user_id))
             status = 304
             puts 'not liked'
-        else 
+        else
             status = 200
             like.save
         end
@@ -29,6 +29,7 @@ class LikesController < ApplicationController
     end
 
     private
+
     def like_params
         params.require(:like).permit(:upvote, :user_id, :post_id)
     end

@@ -7,13 +7,21 @@ class CommentsController < ApplicationController
     else
       render status: 304
     end
-
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    render json: comment
   end
 
   def edit
+    comment = Comment.find(params[:id])
+    if comment.update(comment_params)
+      render status: 200 json: comment
+    else
+      render status: 304
+    end
   end
 
   private
