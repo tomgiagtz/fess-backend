@@ -6,7 +6,12 @@ def index
         lat = request.headers["latitude"].to_f
         long = request.headers["longitude"].to_f
         posts = Post.get_posts_by_location([lat, long])
-        render json: posts
+        if request.headers["nearest"]
+          posts2 = Post.get_nearest_posts([lat, long])
+          render json: posts2
+        else
+          render json: posts.reverse
+        end
     else
         render json: Post.all
     end
