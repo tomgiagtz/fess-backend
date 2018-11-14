@@ -9,7 +9,7 @@ class LikesController < ApplicationController
             like.save
         end
 
-        render status: status, json: like.post
+        render status: status, json: like
     end
 
     def update
@@ -21,9 +21,11 @@ class LikesController < ApplicationController
     end
 
     def destroy
-        like = Like.find(params[:id]).destroy
+        like = Like.find(params[:id])
+        post = like.post
+        like.destroy
 
-        render json: like.post
+        render json: post
     end
 
     private
