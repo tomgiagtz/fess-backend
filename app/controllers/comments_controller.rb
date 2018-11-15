@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def edit
     comment = Comment.find(params[:id])
     if comment.update(comment_params)
-      render status: 200 json: comment
+      render status: 200, json: comment
     else
       render status: 304
     end
