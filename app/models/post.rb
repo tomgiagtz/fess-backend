@@ -22,16 +22,19 @@ class Post < ApplicationRecord
 	def self.get_nearest_posts(location)
 		posts = Post.get_posts_by_location(location)
 		posts.sort do |post1, post2|
-			post1.calculate_distance_from(location) - post2.calculate_distance_from(location)
+			(post1.calculate_distance_from(location) - post2.calculate_distance_from(location)).abs
 		end
 
 	end
 
 	def self.get_posts_by_location(location)
-		puts location
-		Post.all.select do |post|
+		posts = Post.all.select do |post|
 			post.calculate_distance_from(location) < 0.5
 		end
+
+		posts.sort_by {|post| post.created_at}.reverse
 	end
+
+	
 
 end
