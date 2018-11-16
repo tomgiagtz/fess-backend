@@ -2,8 +2,7 @@ class CommentsController < ApplicationController
   def create
     newComment = Comment.new(comment_params)
     if newComment.save
-      status = 200
-      render status: status, json: newComment
+      render status: 200, json: newComment
     else
       render status: 304
     end
